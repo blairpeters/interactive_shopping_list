@@ -43,6 +43,7 @@ const ol = select("ol");
 listen(document, "DOMContentLoaded", displayItems);
 
 function displayItems() {
+  ol.innerHTML = "";
   shoppingList.forEach(createAListItem);
 }
 function createAListItem(item) {
@@ -55,5 +56,7 @@ listen(form, "submit", addItem);
 
 function addItem(event) {
   event.preventDefault();
-  console.dir(event.target[0].value);
+  shoppingList.push(event.target[0].value);
+
+  displayItems();
 }
