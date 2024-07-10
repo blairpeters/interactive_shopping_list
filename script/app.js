@@ -55,6 +55,22 @@ function createAListItem(item) {
   function toggleChecked() {
     li.classList.toggle("checked");
   }
+
+  listen(li, "dblclick", editItem);
+  function editItem() {
+    addAttribute(li, "contenteditable", true);
+  }
+  listen(li, "blur", stopEditing);
+  function stopEditing(event) {
+    event.preventDefault();
+    event.target.removeAttribute("contenteditable");
+  }
+  listen(li, "keydown", saveList);
+  function saveList(event) {
+    if (event.key === "Enter") {
+      event.target.blur();
+    }
+  }
 }
 const form = select("form");
 listen(form, "submit", addItem);
