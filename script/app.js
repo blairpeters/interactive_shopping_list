@@ -37,7 +37,7 @@ function addAttribute(element, attribute, content) {
   return element.setAttribute(attribute, content);
 }
 
-const shoppingList = ["milk", "tea"];
+const shoppingList = [];
 
 const ol = select("ol");
 listen(document, "DOMContentLoaded", displayItems);
@@ -50,6 +50,11 @@ function createAListItem(item) {
   const li = createAnElement("li");
   addText(li, item);
   appendChild(li, ol);
+
+  listen(li, "click", toggleChecked);
+  function toggleChecked() {
+    li.classList.toggle("checked");
+  }
 }
 const form = select("form");
 listen(form, "submit", addItem);
