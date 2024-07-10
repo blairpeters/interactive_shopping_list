@@ -50,3 +50,10 @@ function createAListItem(item) {
   addText(li, item);
   appendChild(li, ol);
 }
+const form = select("form");
+listen(form, "submit", addItem);
+
+function addItem(event) {
+  event.preventDefault();
+  console.dir(event.target[0].value);
+}
